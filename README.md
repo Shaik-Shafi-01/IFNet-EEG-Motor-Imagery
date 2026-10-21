@@ -88,6 +88,9 @@ Data Augmentation
         └── Repeated Trial Augmentation
         │
         ▼
+750-Sample EEG Input
+        │
+        ▼
 IFNetV2
         │
         ▼
