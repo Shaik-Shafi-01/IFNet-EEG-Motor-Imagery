@@ -51,7 +51,7 @@ The original dataset is not included in this repository due to dataset size and 
 
 The complete implementation is available in:
 
-`MotorImagery.ipynb`
+`motorimagery.ipynb`
 
 The notebook contains the preprocessing pipeline, model implementation, training procedure, and evaluation.
 
