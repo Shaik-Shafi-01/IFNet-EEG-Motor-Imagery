@@ -1,80 +1,103 @@
 # EEG Motor Imagery Classification using IFNet
 
+Deep learning-based EEG motor imagery classification using an IFNetV2 architecture with Euclidean Alignment, filter-bank preprocessing, data augmentation, 5-fold ensemble learning, and multi-window test-time augmentation.
+
 ## Overview
 
-This project implements a deep learning approach for classifying EEG motor imagery signals using an IFNet-based architecture.
+Motor imagery (MI) is the process of imagining a physical movement without actually performing it. EEG signals recorded during motor imagery contain patterns that can be used by Brain-Computer Interface (BCI) systems to identify the intended movement.
 
-The objective is to classify imagined motor activities from EEG signals without requiring physical movement.
+This project implements an IFNet-based deep learning pipeline for four-class motor imagery classification using the BCI Competition IV Dataset 2a.
+
+The project focuses on improving cross-session EEG classification by combining:
+
+- Euclidean Alignment
+- Two-band filter-bank preprocessing
+- Subject-adaptive preprocessing
+- Random temporal cropping
+- CutMix augmentation
+- Random Erasing
+- Repeated Trial Augmentation
+- IFNetV2 deep learning architecture
+- 5-fold ensemble learning
+- Multi-window Test-Time Augmentation (TTA)
+
+---
 
 ## Motor Imagery Classes
 
-The model performs classification for:
+The model performs four-class classification:
 
-- Left Hand
-- Right Hand
-- Both Feet
-- Tongue
+| Class | Motor Imagery |
+|-------|---------------|
+| 0 | Left Hand |
+| 1 | Right Hand |
+| 2 | Both Feet |
+| 3 | Tongue |
 
-## Methodology
-
-The overall pipeline includes:
-
-1. EEG data loading
-2. EEG signal preprocessing
-3. Signal filtering
-4. Epoch generation
-5. Data augmentation
-6. Deep feature extraction
-7. IFNet-based classification
-8. Model training
-9. Performance evaluation
+---
 
 ## Dataset
 
-This project uses the BCI Competition IV Dataset 2a.
+This project uses the **BCI Competition IV Dataset 2a**.
 
-The original dataset is not included in this repository due to dataset size and licensing considerations.
+The dataset contains EEG recordings from 9 subjects performing four-class motor imagery tasks.
 
-## Technologies
+### Dataset characteristics
 
-- Python
-- PyTorch
-- MNE
-- NumPy
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
+- Subjects: 9
+- EEG channels: 22
+- Sampling frequency: 250 Hz
+- Motor imagery classes: 4
+- Sessions: Training and evaluation sessions
+- Evaluation: Cross-session classification
 
-## Project
+The dataset is **not included in this repository** because of its size and distribution considerations.
 
-The complete implementation is available in:
+---
 
-`motorimagery.ipynb`
+# Methodology
 
-The notebook contains the preprocessing pipeline, model implementation, training procedure, and evaluation.
+The complete pipeline implemented in the notebook is:
 
-## Results
-
-| Model | Accuracy |
-|---|---:|
-| Baseline | TBD |
-| Proposed IFNet | TBD |
-
-Results will be updated with the final experimental values.
-
-## Kaggle
-
-The project was developed and executed using Kaggle GPU infrastructure.
-
-Kaggle Notebook:
-
-`https://www.kaggle.com/code/shafishaik01/motorimagery/`
-
-## How to Run
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Shaik-Shafi-01/IFNet-EEG-Motor-Imagery.git
+```text
+BCI Competition IV-2a
+        │
+        ▼
+Training / Evaluation Sessions
+        │
+        ▼
+Subject-Specific Preprocessing
+        │
+        ├── Euclidean Alignment
+        │
+        ▼
+Two-Band Filter Bank
+        │
+        ├── 4–16 Hz
+        └── 16–40 Hz
+        │
+        ▼
+Normalization
+        │
+        ▼
+Data Augmentation
+        │
+        ├── Random Crop
+        ├── CutMix
+        ├── Random Erasing
+        └── Repeated Trial Augmentation
+        │
+        ▼
+IFNetV2
+        │
+        ▼
+5-Fold Training
+        │
+        ▼
+Multi-Window TTA
+        │
+        ▼
+5-Fold Ensemble
+        │
+        ▼
+Cross-Session Evaluation
